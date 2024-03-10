@@ -36,7 +36,7 @@ Deploying The Application locally on minikube ☸.
 Clone the repository using the following command:
 
 ```linux
-    https://github.com/Hendawyy/Sample-nodejs-app-GithubActions-Deploy-Locally.git
+    git clone https://github.com/Hendawyy/Sample-nodejs-app-GithubActions-Deploy-Locally.git
 ```
 
 ## Application Setup
