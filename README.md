@@ -60,9 +60,12 @@ Set up a CI/CD pipeline using GitHub Actions.
 - Then you need to specify the key `jobs` then name your `job` and add the `steps` for this job.
 ### The pipeline should automate the following:
 - Linting the code.
-  - Add The Job and push which will trigger the workflow to run 
+  - Add The Job and push which will trigger the workflow to run .
+  - As we Can See The Job ran error-free.
+    ![LinterJob](./Screenshots/LinterJob.png)
 > [!NOTE]
 > I used the `Super Linter` action which is available in marketplace.
+
     
 - Building the Docker container.
 - Pushing the container to a container registry (Docker Hub)
