@@ -69,6 +69,24 @@ Set up a CI/CD pipeline using GitHub Actions.
     
 - Building the Docker container.
 - Pushing the container to a container registry (Docker Hub)
+  - Now, For this job , I'll make another job Called Docker.
+  - I'll use another Action called `mr-smithers-excellent/docker-build-push@v4`.
+  - So I'll First add my Docker username and password on gihub secrets you can find a tab called settings on the repo.
+  - On the sidebar you will find `Secrets and Variables` accordion and choose `Actions`.
+  - You will press `New Repository Secret` and add 2 secrets your `Dockerhub Username` is one and the second is you `Dockerhub Password`.
+  - Now, I will add the `job` and specify the image like this `my-username/image-name`.
+  - Specify `tag` if desired and you registry should be `docker.io`.
+```
+    - name: Build and Push Docker Image
+      id: docker_build
+      uses: mr-smithers-excellent/docker-build-push@v4
+      with:
+        image: ${{ secrets.DOCKER_USERNAME }}/nodejs-img
+        tag: v1
+        registry: docker.io
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+```
 
 ## Deployment:
     Deploy the application using Terraform:
