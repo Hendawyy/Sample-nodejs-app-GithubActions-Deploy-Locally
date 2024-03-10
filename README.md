@@ -31,8 +31,8 @@ Deploying The Application locally on minikube ☸.
 
 ## Application Setup
 
-    - Fork the provided simple web application [repository](https://github.com/johnpapa/node-hello) (e.g., a basic "Hello World"app in Node.js) 🍴.
-    - Containerize the application by creating a Dockerfile 🐋.
+- Fork the provided simple web application [repository](https://github.com/johnpapa/node-hello) (e.g., a basic "Hello World"app in Node.js) 🍴.
+- Containerize the application by creating a Dockerfile 🐋.
 
 ## CI Pipeline
 
@@ -164,6 +164,7 @@ Set up a CI/CD pipeline using GitHub Actions.
         runs-on: ubuntu-latest
         needs: Docker
     ```
+
 - As we Can See The Job ran error-free.
     ![TerraformJob](./Screenshots/TerraformJob.png)
 
@@ -173,9 +174,9 @@ Set up a CI/CD pipeline using GitHub Actions.
 - Deploy the container on a container orchestration platform (e.g. minikube).
       - You need to create a directory `Kubernetes` and add your `yaml` files.
 
-    ```linux
-        mkdir Kubernetes
-    ```
+```linux
+    mkdir Kubernetes
+```
 
     ```linux
         cd Kubernetes/
@@ -188,7 +189,24 @@ Set up a CI/CD pipeline using GitHub Actions.
   
   - Inside the `ci.yml` add the `Kubernetes job` and make sure to add the `needs` key to make sure that the job runs after pushing the Terraform resource have been applied.
   - Then you apply the `yaml` configuration files.  
-  
+  - As we Can See The Job ran error-free.
+![K8sJob](./Screenshots/K8sJob.png)
+![K8sJobSuccess](./Screenshots/K8sJobSuccess.png)
+![K8sJobDetails](./Screenshots/K8sJobDetails.png)
+
 ## Monitoring and Logging
 
-Set up log aggregation for the application using the free tier on New Relic.
+To Set up log aggregation for the application using the free tier on New Relic.
+
+- You need to go to this link [NewRelic](https://newrelic.com/platform/log-management?gclid=true).
+- Enter your name and mail to get started for free.
+- After you login choose Kubernetes and then Guided CLI install.
+- You will be provided with a command for Installing the Kubernetes Integration.
+- Copy this command and paste it inside your terminal.
+![NewRelicInstall](./Screenshots/NewRelicInstall.png)
+- Then you will need to test the connection if it succeed you will be able to See your data.
+- you will find the Terminal looking like this.
+![NewRelicLogs2](./Screenshots/NewRelicLogs2.png)
+![NewRelicLogs5](./Screenshots/NewRelicLogs5.png)
+![NewRelicLogs6](./Screenshots/NewRelicLogs6.png)
+  
