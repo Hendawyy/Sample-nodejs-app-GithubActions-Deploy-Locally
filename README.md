@@ -10,6 +10,7 @@ Deploying The Application locally on minikube ☸.
   - [Table of Contents](#table-of-contents)
   - [🛠️ Prerequisites](#️-prerequisites)
   - [Introduction](#introduction)
+  - [Usage and Setup Instructions:](#usage-and-setup-instructions)
   - [Application Setup](#application-setup)
   - [CI Pipeline](#ci-pipeline)
     - [Inside The `ci.yml` file](#inside-the-ciyml-file)
@@ -29,6 +30,14 @@ Deploying The Application locally on minikube ☸.
 ## Introduction
 
 👋 Welcome to the Sample Node App! In this project we will Dockerize the provided node app, and deploy it on a cluster using The CI/CD pipeline GitHub Actions.
+
+## Usage and Setup Instructions:
+
+Clone the repository using the following command:
+
+```linux
+    https://github.com/Hendawyy/Sample-nodejs-app-GithubActions-Deploy-Locally.git
+```
 
 ## Application Setup
 
