@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout Docker
         uses: actions/checkout@v4.1.1
 
       - name: Build and Push Docker Image
@@ -80,17 +80,14 @@ jobs:
     needs: Terraform
 
     steps:
-      - name: Check out the code
+      - name: Checkout Kubernetes
         uses: actions/checkout@v4.1.1
 
       - name: Use Minikube
         uses: medyagh/setup-minikube@master
 
       - name: Apply Kubernetes Namespace
-        run: |
-          pwd
-          ls
-          kubectl apply -f Terraform/Kubernetes/
+        run: kubectl apply -f Terraform/Kubernetes/
         shell: bash
 
       - name: Try the cluster

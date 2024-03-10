@@ -191,4 +191,4 @@ Set up a CI/CD pipeline using GitHub Actions.
   
 ## Monitoring and Logging
 
-    Set up log aggregation for the application using the free tier on New Relic.
+Set up log aggregation for the application using the free tier on New Relic.
