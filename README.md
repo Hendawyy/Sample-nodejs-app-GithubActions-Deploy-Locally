@@ -32,22 +32,22 @@ Deploying The Application locally on minikube ☸.
     - Containerize the application by creating a Dockerfile 🐋.
 
 ## CI Pipeline:
-    Set up a CI/CD pipeline using GitHub Actions. 
-    1. You need to create a directory `.github/workflows` and add your CI/CD configuration file.
+Set up a CI/CD pipeline using GitHub Actions. 
+1. You need to create a directory `.github/workflows` and add your CI/CD configuration file.
     ```
         mkdir -p .github/workflows
     ```
-    2. Create the configuration file and name it whatever, I named it `ci.yml`.
+2. Create the configuration file and name it whatever, I named it `ci.yml`.
     ```
         cd .github/workflows/
         touch ci.yml
     ```
-    Inside The `ci.yml` file
-        - Name your pipeline like this:
+Inside The `ci.yml` file
+    - Name your pipeline like this:
             ```
                 name: CI Pipeline
             ```
-        - Specify The triggering conditions for running the workflow (e.g., push or pull request) and you will also need to specify the branch.
+    - Specify The triggering conditions for running the workflow (e.g., push or pull request) and you will also need to specify the branch.
             ```
                 on:
                 push:
@@ -55,14 +55,15 @@ Deploying The Application locally on minikube ☸.
                 pull_request:
                     branches: [master]
             ```
-        - Then you need to specify the key `jobs` then name your `job` and add the `steps` for this job.
-    The pipeline should automate the following:
-    - Linting the code.
+    - Then you need to specify the key `jobs` then name your `job` and add the `steps` for this job.
+The pipeline should automate the following:
+- Linting the code.
+  - Add The Job and push which will trigger the workflow to run 
      > [!NOTE]
      > I used the `Super Linter` action which is available in marketplace.
     
-    - Building the Docker container.
-    - Pushing the container to a container registry (Docker Hub)
+- Building the Docker container.
+- Pushing the container to a container registry (Docker Hub)
 
 ## Deployment:
     Deploy the application using Terraform:
