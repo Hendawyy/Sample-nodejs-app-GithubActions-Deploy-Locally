@@ -138,7 +138,7 @@ Set up a CI/CD pipeline using GitHub Actions.
 
 ### Deploy the application using Terraform
 
-1. You need to create a directory `Terraform` and add your `tf` configuration file.
+1. You need to create a directory `Terraform` and add your `tf` configuration files.
 
         ```linux
             mkdir Terraform
@@ -168,10 +168,27 @@ Set up a CI/CD pipeline using GitHub Actions.
     ![TerraformJob](./Screenshots/TerraformJob.png)
 
 > [!NOTE]
-> You Will find the full job in `.github/workflows/ci.yml` file.
+> You will find the full job in `.github/workflows/ci.yml` file.
 
-    - Deploy the container on a container orchestration platform (e.g. minikube).
+- Deploy the container on a container orchestration platform (e.g. minikube).
+      - You need to create a directory `Kubernetes` and add your `yaml` files.
 
+        ```linux
+            mkdir Kubernetes
+        ```
+
+        ```linux
+            cd Kubernetes/
+            touch '1 namespace.yaml' '2 deployment.yaml' '3 service.yaml'
+        ```
+
+- inside the `1 namespace.yaml` Create a namespace where our deployment will be.
+- inside the `2 deployment.yaml` Create a deployment of the node image with 3 replicas.
+- inside the `service.yaml` Create a NodePort service for our app to be able to access it.
+  
+  - Inside the `ci.yml` add the `Kubernetes job` and make sure to add the `needs` key to make sure that the job runs after pushing the Terraform resource have been applied.
+  - Then you apply the `yaml` configuration files.  
+  
 ## Monitoring and Logging
 
     Set up log aggregation for the application using the free tier on New Relic.

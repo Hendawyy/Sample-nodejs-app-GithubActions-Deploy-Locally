@@ -31,43 +31,73 @@ jobs:
           registry: docker.io
           username: ${{ secrets.DOCKER_EMAIL }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+
   Terraform:
     name: Terraform Deployment
     runs-on: ubuntu-latest
     needs: Docker
 
     steps:
-    - name: Checkout Terraform
-      uses: actions/checkout@v4.1.1
+      - name: Checkout Terraform
+        uses: actions/checkout@v4.1.1
 
-    - name: Install Terraform
-      uses: hashicorp/setup-terraform@v1
-      with:
-        terraform_version: 1.1.9
-            
-    - name: Initialize Terraform
-      id: init
-      run: |
-        cd Terraform
-        terraform init
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.1.9
 
-    - name: Terraform Format
-      id: format
-      run: terraform fmt -check
-      continue-on-error: true
-    
-    - name: Terraform Validate
-      run: |
-        cd Terraform
-        terraform validate
-    
-    - name: Terraform Plan
-      id: plan
-      run: |
-        cd Terraform
-        terraform plan
+      - name: Initialize Terraform
+        id: init
+        run: |
+          cd Terraform
+          terraform init
 
-    - name: Terraform Apply
-      run: |
-        cd Terraform
-        terraform apply --auto-approve
+      - name: Terraform Format
+        id: format
+        run: terraform fmt -check
+        continue-on-error: true
+
+      - name: Terraform Validate
+        run: |
+          cd Terraform
+          terraform validate
+
+      - name: Terraform Plan
+        id: plan
+        run: |
+          cd Terraform
+          terraform plan
+
+      - name: Terraform Apply
+        run: |
+          cd Terraform
+          terraform apply --auto-approve
+
+  Kubernetes:
+    name: Deploy on a Cluster
+    runs-on: ubuntu-latest
+    needs: Terraform
+
+    steps:
+      - name: Check out the code
+        uses: medyagh/setup-minikube@master
+
+      - name: Apply Kubernetes Namespace
+        run: kubectl apply -f Terraform/Kubernetes/
+        shell: bash
+
+      - name: Try the cluster
+        run: |
+          kubectl get deployment -n node
+          kubectl get pods -n node -owide
+          kubectl get svc -n node -owide
+          sleep 100
+          kubectl get deployment -n node
+          kubectl get pods -n node -owide
+          kubectl get svc -n node -owide
+        shell: bash
+
+      - name: Test service URLs
+        run: |
+          minikube service list
+          minikube service node-app-service --url -n node
