@@ -61,8 +61,8 @@ Set up a CI/CD pipeline using GitHub Actions.
 ### The pipeline should automate the following:
 - Linting the code.
   - Add The Job and push which will trigger the workflow to run 
-     > [!NOTE]
-     > I used the `Super Linter` action which is available in marketplace.
+> [!NOTE]
+> I used the `Super Linter` action which is available in marketplace.
     
 - Building the Docker container.
 - Pushing the container to a container registry (Docker Hub)
