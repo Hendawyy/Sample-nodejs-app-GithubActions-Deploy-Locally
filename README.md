@@ -17,6 +17,7 @@ Deploying The Application locally on minikube ☸.
   - [Deployment](#deployment)
     - [Deploy the application using Terraform](#deploy-the-application-using-terraform)
   - [Monitoring and Logging](#monitoring-and-logging)
+  - [Questions or Need Help?](#questions-or-need-help)
 
 ## 🛠️ Prerequisites
 
@@ -31,8 +32,11 @@ Deploying The Application locally on minikube ☸.
 
 ## Application Setup
 
-- Fork the provided simple web application [repository](https://github.com/johnpapa/node-hello) (e.g., a basic "Hello World"app in Node.js) 🍴.
-- Containerize the application by creating a Dockerfile 🐋.
+1. **Fork the Repository:**
+   - Fork the provided simple web application [repository](https://github.com/johnpapa/node-hello) (e.g., a basic "Hello World" app in Node.js) 🍴.
+
+2. **Containerize the Application:**
+   - Create a Dockerfile 🐋 for containerizing the application.
 
 ## CI Pipeline
 
@@ -210,3 +214,6 @@ To Set up log aggregation for the application using the free tier on New Relic.
 ![NewRelicLogs5](./Screenshots/NewRelicLogs5.png)
 ![NewRelicLogs6](./Screenshots/NewRelicLogs6.png)
   
+## Questions or Need Help?
+
+If you have any questions, suggestions, or need assistance, please don't hesitate to Contact Me [Seif Hendawy](mailto:seifhendawy1@gmail.com). 😉
