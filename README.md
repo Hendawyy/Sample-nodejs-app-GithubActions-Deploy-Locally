@@ -140,16 +140,16 @@ Set up a CI/CD pipeline using GitHub Actions.
 
 1. You need to create a directory `Terraform` and add your `tf` configuration files.
 
-        ```linux
-            mkdir Terraform
-        ```
+     ```linux
+        mkdir Terraform
+    ```
 
 2. Create the configuration file and name it `main.tf`, `provider.tf`, `variables.tf`.
 
-        ```linux
-            cd Terraform/
-            touch main.tf provider.tf variables.tf
-        ```
+    ```linux
+        cd Terraform/
+        touch main.tf provider.tf variables.tf
+    ```
 
 - inside the `provider.tf` specify docker as the provider.
 - inside the `variables.tf` specify The image you need to be pulled and the ports.
@@ -173,14 +173,14 @@ Set up a CI/CD pipeline using GitHub Actions.
 - Deploy the container on a container orchestration platform (e.g. minikube).
       - You need to create a directory `Kubernetes` and add your `yaml` files.
 
-        ```linux
-            mkdir Kubernetes
-        ```
+    ```linux
+        mkdir Kubernetes
+    ```
 
-        ```linux
-            cd Kubernetes/
-            touch '1 namespace.yaml' '2 deployment.yaml' '3 service.yaml'
-        ```
+    ```linux
+        cd Kubernetes/
+        touch '1 namespace.yaml' '2 deployment.yaml' '3 service.yaml'
+    ```
 
 - inside the `1 namespace.yaml` Create a namespace where our deployment will be.
 - inside the `2 deployment.yaml` Create a deployment of the node image with 3 replicas.
