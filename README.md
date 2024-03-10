@@ -13,6 +13,7 @@ Deploying The Application locally on minikube ☸.
   - [Application Setup:](#application-setup)
   - [CI Pipeline:](#ci-pipeline)
     - [Inside The `ci.yml` file](#inside-the-ciyml-file)
+    - [The pipeline should automate the following:](#the-pipeline-should-automate-the-following)
   - [Deployment:](#deployment)
   - [Monitoring and Logging:](#monitoring-and-logging)
 
@@ -49,15 +50,15 @@ Set up a CI/CD pipeline using GitHub Actions.
             name: CI Pipeline
     ```
 - Specify The triggering conditions for running the workflow (e.g., push or pull request) and you will also need to specify the branch.
-            ```
-                on:
-                push:
-                    branches: [master]
-                pull_request:
-                    branches: [master]
-            ```
-    - Then you need to specify the key `jobs` then name your `job` and add the `steps` for this job.
-The pipeline should automate the following:
+    ```
+        on:
+        push:
+            branches: [master]
+        pull_request:
+            branches: [master]
+    ```
+- Then you need to specify the key `jobs` then name your `job` and add the `steps` for this job.
+### The pipeline should automate the following:
 - Linting the code.
   - Add The Job and push which will trigger the workflow to run 
      > [!NOTE]
