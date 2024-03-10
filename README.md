@@ -15,6 +15,7 @@ Deploying The Application locally on minikube ☸.
     - [Inside The `ci.yml` file](#inside-the-ciyml-file)
     - [The pipeline should automate the following](#the-pipeline-should-automate-the-following)
   - [Deployment](#deployment)
+    - [Deploy the application using Terraform](#deploy-the-application-using-terraform)
   - [Monitoring and Logging](#monitoring-and-logging)
 
 ## 🛠️ Prerequisites
@@ -74,6 +75,32 @@ Set up a CI/CD pipeline using GitHub Actions.
 
 - Linting the code.
   - Add The Job and push which will trigger the workflow to run .
+  - Create a file named .eslintrc.js and add some rules for the linter to check on.
+
+    ```linux
+        cd ../..
+        touch .eslintrc.js
+    ```
+
+  - Add Some Rules.
+
+    ```
+        module.exports = {
+        extends: 'eslint:recommended',
+        env: {
+            node: true,
+        },
+        rules: {
+            'indent': ['error', 2],
+            'semi': ['error', 'never'],
+            'quotes': ['error', 'single'],
+            'comma-dangle': ['error', 'always-multiline'],
+            'keyword-spacing': ['error', { 'before': true, 'after': true }],
+        
+        },
+        };
+    ```
+
   - As we Can See The Job ran error-free.
     ![LinterJob](./Screenshots/LinterJob.png)
 
@@ -109,8 +136,38 @@ Set up a CI/CD pipeline using GitHub Actions.
 
 ## Deployment
 
-    Deploy the application using Terraform:
+### Deploy the application using Terraform
+
+    1. You need to create a directory `Terraform` and add your `tf` configuration file.
+
+        ```linux
+            mkdir Terraform
+        ```
+
+    2. Create the configuration file and name it `main.tf`, `provider.tf`, `variables.tf`.
+
+        ```linux
+            cd Terraform/
+            touch main.tf provider.tf variables.tf
+        ```
+
+    - inside the `provider.tf` specify docker as the provider.
+    - inside the `variables.tf` specify The image you need to be pulled and the ports.
+    - inside the `main.tf` define the resources needed to ensures that the Docker image is pulled (if not already present).
     - Run the container locally using the docker provider.
+      - Inside the `ci.yml` add the `terraform job` and make sure to add the `needs` key to make sure that the job runs after pushing the docker image on `Dockerhub`.
+      - Then you add the terraform commands to apply the `tf` configuration files.  
+    
+    ```
+     Terraform:
+        name: Terraform Deployment
+        runs-on: ubuntu-latest
+        needs: Docker
+    ```
+
+> [!NOTE]
+> You Will find the full job in `.github/workflows/ci.yml` file.
+
     - Deploy the container on a container orchestration platform (e.g. minikube).
 
 ## Monitoring and Logging
