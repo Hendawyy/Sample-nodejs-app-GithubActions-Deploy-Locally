@@ -84,7 +84,7 @@ Set up a CI/CD pipeline using GitHub Actions.
         image: ${{ secrets.DOCKER_USERNAME }}/nodejs-img
         tag: v1
         registry: docker.io
-        username: ${{ secrets.DOCKER_USERNAME }}
+        username: ${{ secrets.DOCKER_EMAIL }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 ```
 

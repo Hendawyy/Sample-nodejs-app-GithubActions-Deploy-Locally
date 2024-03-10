@@ -29,5 +29,5 @@ jobs:
           image: ${{ secrets.DOCKER_USERNAME }}/node-img
           tag: v1
           registry: docker.io
-          username: ${{ secrets.DOCKER_USERNAME }}
+          username: ${{ secrets.DOCKER_EMAIL }}
           password: ${{ secrets.DOCKER_PASSWORD }}
