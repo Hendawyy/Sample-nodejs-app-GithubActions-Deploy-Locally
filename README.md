@@ -138,32 +138,34 @@ Set up a CI/CD pipeline using GitHub Actions.
 
 ### Deploy the application using Terraform
 
-    1. You need to create a directory `Terraform` and add your `tf` configuration file.
+1. You need to create a directory `Terraform` and add your `tf` configuration file.
 
         ```linux
             mkdir Terraform
         ```
 
-    2. Create the configuration file and name it `main.tf`, `provider.tf`, `variables.tf`.
+2. Create the configuration file and name it `main.tf`, `provider.tf`, `variables.tf`.
 
         ```linux
             cd Terraform/
             touch main.tf provider.tf variables.tf
         ```
 
-    - inside the `provider.tf` specify docker as the provider.
-    - inside the `variables.tf` specify The image you need to be pulled and the ports.
-    - inside the `main.tf` define the resources needed to ensures that the Docker image is pulled (if not already present).
-    - Run the container locally using the docker provider.
-      - Inside the `ci.yml` add the `terraform job` and make sure to add the `needs` key to make sure that the job runs after pushing the docker image on `Dockerhub`.
-      - Then you add the terraform commands to apply the `tf` configuration files.  
-    
-    ```
+- inside the `provider.tf` specify docker as the provider.
+- inside the `variables.tf` specify The image you need to be pulled and the ports.
+- inside the `main.tf` define the resources needed to ensures that the Docker image is pulled (if not already present).
+- Run the container locally using the docker provider.
+  - Inside the `ci.yml` add the `terraform job` and make sure to add the `needs` key to make sure that the job runs after pushing the docker image on `Dockerhub`.
+  - Then you add the terraform commands to apply the `tf` configuration files.  
+
+    ```yaml
      Terraform:
         name: Terraform Deployment
         runs-on: ubuntu-latest
         needs: Docker
     ```
+- As we Can See The Job ran error-free.
+    ![TerraformJob](./Screenshots/TerraformJob.png)
 
 > [!NOTE]
 > You Will find the full job in `.github/workflows/ci.yml` file.
