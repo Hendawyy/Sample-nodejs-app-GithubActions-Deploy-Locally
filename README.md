@@ -87,6 +87,11 @@ Set up a CI/CD pipeline using GitHub Actions.
         username: ${{ secrets.DOCKER_EMAIL }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 ```
+  - As we Can See The Job ran error-free.
+      ![DockerJob](./Screenshots/DockerJob.png)
+  - And here is the pushed image on DockerHub.
+      ![DockerJobSuccess](./Screenshots/DockerJobSuccess.png)
+
 
 ## Deployment:
     Deploy the application using Terraform:
