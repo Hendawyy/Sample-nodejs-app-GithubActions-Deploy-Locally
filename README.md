@@ -10,7 +10,7 @@ Deploying The Application locally on minikube ☸.
   - [Table of Contents](#table-of-contents)
   - [🛠️ Prerequisites](#️-prerequisites)
   - [Introduction](#introduction)
-  - [Usage and Setup Instructions:](#usage-and-setup-instructions)
+  - [Usage and Setup Instructions](#usage-and-setup-instructions)
   - [Application Setup](#application-setup)
   - [CI Pipeline](#ci-pipeline)
     - [Inside The `ci.yml` file](#inside-the-ciyml-file)
@@ -22,21 +22,21 @@ Deploying The Application locally on minikube ☸.
 
 ## 🛠️ Prerequisites
 
-    - Docker  🐋
-    - Kubectl ☸
-    - minikube ☸
-    - Terraform 🏗️
+- Docker 🐋
+- Kubectl ☸
+- minikube ☸
+- Terraform 🏗️
 
 ## Introduction
 
-👋 Welcome to the Sample Node App! In this project we will Dockerize the provided node app, and deploy it on a cluster using The CI/CD pipeline GitHub Actions.
+👋 Welcome to the Sample Node App! In this project, we will Dockerize the provided node app and deploy it on a cluster using The CI/CD pipeline GitHub Actions.
 
-## Usage and Setup Instructions:
+## Usage and Setup Instructions
 
 Clone the repository using the following command:
 
-```linux
-    git clone https://github.com/Hendawyy/Sample-nodejs-app-GithubActions-Deploy-Locally.git
+```bash
+git clone https://github.com/Hendawyy/Sample-nodejs-app-GithubActions-Deploy-Locally.git
 ```
 
 ## Application Setup
@@ -53,34 +53,34 @@ Set up a CI/CD pipeline using GitHub Actions.
 
 1. You need to create a directory `.github/workflows` and add your CI/CD configuration file.
 
-    ```linux
-        mkdir -p .github/workflows
-    ```
+```bash
+    mkdir -p .github/workflows
+```
 
 2. Create the configuration file and name it whatever, I named it `ci.yml`.
 
-    ```linux
-        cd .github/workflows/
-        touch ci.yml
-    ```
+```bash
+    cd .github/workflows/
+    touch ci.yml
+```
 
 ### Inside The `ci.yml` file
 
 - Name your pipeline like this:
 
-     ```yaml
-            name: CI Pipeline
-    ```
+ ```yaml
+    name: CI Pipeline
+```
 
 - Specify The triggering conditions for running the workflow (e.g., push or pull request) and you will also need to specify the branch.
 
-    ```yaml
-        on:
+```yaml
+    on:
         push:
-            branches: [master]
+        branches: [master]
         pull_request:
-            branches: [master]
-    ```
+        branches: [master]
+```
 
 - Then you need to specify the key `jobs` then name your `job` and add the `steps` for this job.
 
@@ -90,29 +90,28 @@ Set up a CI/CD pipeline using GitHub Actions.
   - Add The Job and push which will trigger the workflow to run .
   - Create a file named .eslintrc.js and add some rules for the linter to check on.
 
-    ```linux
-        cd ../..
-        touch .eslintrc.js
-    ```
+```bash
+    cd ../..
+    touch .eslintrc.js
+```
 
   - Add Some Rules.
 
-    ```
-        module.exports = {
-        extends: 'eslint:recommended',
-        env: {
-            node: true,
-        },
-        rules: {
-            'indent': ['error', 2],
-            'semi': ['error', 'never'],
-            'quotes': ['error', 'single'],
-            'comma-dangle': ['error', 'always-multiline'],
-            'keyword-spacing': ['error', { 'before': true, 'after': true }],
-        
-        },
-        };
-    ```
+```js
+    module.exports = {
+    extends: 'eslint:recommended',
+    env: {
+        node: true,
+    },
+    rules: {
+        'indent': ['error', 2],
+        'semi': ['error', 'never'],
+        'quotes': ['error', 'single'],
+        'comma-dangle': ['error', 'always-multiline'],
+        'keyword-spacing': ['error', { 'before': true, 'after': true }],
+    },
+};
+```
 
   - As we Can See The Job ran error-free.
     ![LinterJob](./Screenshots/LinterJob.png)
@@ -153,16 +152,16 @@ Set up a CI/CD pipeline using GitHub Actions.
 
 1. You need to create a directory `Terraform` and add your `tf` configuration files.
 
-     ```linux
-        mkdir Terraform
-    ```
+ ```bash
+    mkdir Terraform
+```
 
 2. Create the configuration file and name it `main.tf`, `provider.tf`, `variables.tf`.
 
-    ```linux
-        cd Terraform/
-        touch main.tf provider.tf variables.tf
-    ```
+```bash
+    cd Terraform/
+    touch main.tf provider.tf variables.tf
+```
 
 - inside the `provider.tf` specify docker as the provider.
 - inside the `variables.tf` specify The image you need to be pulled and the ports.
@@ -171,12 +170,12 @@ Set up a CI/CD pipeline using GitHub Actions.
   - Inside the `ci.yml` add the `terraform job` and make sure to add the `needs` key to make sure that the job runs after pushing the docker image on `Dockerhub`.
   - Then you add the terraform commands to apply the `tf` configuration files.  
 
-    ```yaml
+```yaml
      Terraform:
         name: Terraform Deployment
         runs-on: ubuntu-latest
         needs: Docker
-    ```
+```
 
 - As we Can See The Job ran error-free.
     ![TerraformJob](./Screenshots/TerraformJob.png)
@@ -187,14 +186,14 @@ Set up a CI/CD pipeline using GitHub Actions.
 - Deploy the container on a container orchestration platform (e.g. minikube).
       - You need to create a directory `Kubernetes` and add your `yaml` files.
 
-```linux
+```bash
     mkdir Kubernetes
 ```
 
-    ```linux
-        cd Kubernetes/
-        touch '1 namespace.yaml' '2 deployment.yaml' '3 service.yaml'
-    ```
+```bash
+    cd Kubernetes/
+    touch '1 namespace.yaml' '2 deployment.yaml' '3 service.yaml'
+```
 
 - inside the `1 namespace.yaml` Create a namespace where our deployment will be.
 - inside the `2 deployment.yaml` Create a deployment of the node image with 3 replicas.
