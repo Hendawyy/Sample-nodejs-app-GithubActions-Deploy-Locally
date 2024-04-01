@@ -105,3 +105,4 @@ jobs:
         run: |
           minikube service list
           minikube service node-app-service --url -n node
+          curl $(minikube service node-app-service --url -n node)
